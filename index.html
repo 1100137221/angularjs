@@ -3,13 +3,28 @@
 <!-- File: chapter2/angularjs-manual-bootstrap.html -->
 <!DOCTYPE html>
 <html ng-app="notesApp">
+<head>
+    <style>
+        .done{
+            background-color:green;
+        }
 
-<body ng-controller="MainCtrl as ctrl">
+        .pending{
+            background-color:red;
+        }
+    </style>
+</head>
+<body ng-controller="MainCtrl as ctrl"
+    >
     <input type="text" ng-model="query">
     <div>goole phone {{query}}</div>
-    <div ng-repeat="note in ctrl.notes | filter:query | orderBy:orderPop">
+    <div ng-repeat="note in ctrl.notes | filter:query "
+            ng-class="ctrl.getNoteClass(note.done)">
         <span>{{note.label}}</span>
-        <span ng-bind="note.done"></span>
+        <span class="assigne"
+            ng-show="note.assign"
+            ng-bind="note.assign">
+        </span>
     </div>
 
 <script
@@ -21,11 +36,17 @@
         
         var self = this;
         self.notes = [
-            {id:3,label:'first note',done:false},
-            {id:2,label:'second note',done:false},
-            {id:1,label:'last note',done:false},
+            {id:3,label:'first note',done:false,assign:"Shyam"},
+            {id:2,label:'second note',done:true},
+            {id:1,label:'last note',done:false,assign:"Bred"},
         ];
-        self.orderPop = "id";
+
+        self.getNoteClass = function(status){
+            return {
+                done:status,
+                pending:!status
+            }
+        }
     }]);
 </script>
 </body>
