@@ -1,0 +1,33 @@
+
+
+<!-- File: chapter2/angularjs-manual-bootstrap.html -->
+<!DOCTYPE html>
+<html ng-app="notesApp">
+
+<body ng-controller="MainCtrl as ctrl">
+    <input type="text" ng-model="query">
+    <div>goole phone {{query}}</div>
+    <div ng-repeat="note in ctrl.notes | filter:query | orderBy:orderPop">
+        <span>{{note.label}}</span>
+        <span ng-bind="note.done"></span>
+    </div>
+
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js">
+</script>
+<script type="text/javascript">
+  angular.module('notesApp', [])
+    .controller("MainCtrl",[function(){
+        
+        var self = this;
+        self.notes = [
+            {id:3,label:'first note',done:false},
+            {id:2,label:'second note',done:false},
+            {id:1,label:'last note',done:false},
+        ];
+        self.orderPop = "id";
+    }]);
+</script>
+</body>
+
+</html>
