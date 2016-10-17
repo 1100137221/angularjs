@@ -17,7 +17,8 @@
     <form ng-submit="ctrl.submit()" name="myForm">
         name:
         <input type="text" required name="uname" class="username"
-         ng-minlength="4" ng-model="ctrl.user.username"><br>
+         ng-minlength="4" ng-model="ctrl.user.username">
+         <span style="color:red;" ng-show="myForm.uname.$invalid">*</span><br>
          <span ng-show="myForm.uname.$error.required">
              This is a required field
          </span><br>
@@ -41,6 +42,19 @@
          <span ng-show="myForm.uemail.$invalid">
              This field is invalid
          </span><br>
+         <ng-form name='profile'>
+             <input type="text" ng-model="ctrl.user.profile.firstname" 
+                required>
+            <input type="text" ng-model="ctrl.user.profile.lastname" 
+                required>
+            <input type="date" ng-model="ctrl.user.profile.dob"
+                required>
+            <textarea ng-model="ctrl.user.profile.data" required></textarea>
+         </ng-form>
+         <span ng-show="myForm.profile.$invalid">
+             please fill out the profile information
+         </span>
+         
         <input type="submit" ng-disabled="myForm.$invalid"
          value="submit" />
     </form>
