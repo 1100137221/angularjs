@@ -20,6 +20,13 @@
     <div>goole phone {{query}}</div>
     <div ng-repeat="note in ctrl.notes | filter:query "
             ng-class="ctrl.getNoteClass(note.done)">
+        <div>first:{{$first}}</div>
+        <div>middle:{{$middle}}</div>
+        <div>lastL{{$last}}</div>
+        <div>index:{{$index}}</div>
+        <div>even:{{$even}}</div>
+        <div>odd:{{$odd}}</div>
+        <div>{{note.$$hash}}</div>
         <span>{{note.label}}</span>
         <span class="assigne"
             ng-show="note.assign"
@@ -27,6 +34,14 @@
         </span>
     </div>
 
+    <table>
+        <tr ng-repeat-start="note in ctrl.notes">
+            <td>{{note.label}}</td>
+        </tr>
+        <tr ng-repeat-end="">
+            <td>{{note.done}}</td>
+        </tr>
+    </table>
 <script
   src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js">
 </script>
