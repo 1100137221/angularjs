@@ -1,0 +1,90 @@
+
+
+<!-- File: chapter2/angularjs-manual-bootstrap.html -->
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<head>
+    <style>
+       
+    </style>
+</head>
+<body ng-controller="MainCtrl as ctrl">
+    <!--checkbox-->
+    <div>
+        <h2>what are you favorite sports?</h2>
+        <div ng-repeat="sport in ctrl.sports">
+            <label ng-bind="sport.label"></label>
+            <div>
+                with binding
+                <input type="checkbox" ng-model="sport.selected" 
+                    ng-true-value="'YES'"
+                    ng-false-value="'NO'"/>
+
+            </div>
+            <div>
+                use-ng-checked
+                <input type="checkbox" ng-checked="sport.selected==='YES'"/>
+            </div>
+            <div>
+                state:{{sport.selected}}
+            </div>
+        </div>
+        <button ng-click="ctrl.click();">click</button>
+    </div>
+    <!--radio-->
+    <div ng-init="otherGender='other'">
+        male:<input type="radio" name="gender"
+            ng-model="ctrl.user.gender" value="male"><br>
+        female:<input type="radio" name="gender"
+        ng-model="ctrl.user.gender" value="female"><br>
+        otherGender:<input type="radio" name="gender"
+        ng-model="ctrl.user.gender" ng-value="otherGender" >{{otherGender}}
+    </div>
+    <!--select-->
+    <select ng-model='ctrl.selectedCountryId'
+        ng-options="c.id as c.label for c in ctrl.countries"
+    >
+    </select>
+    <select ng-model='ctrl.selectedCountry'
+        ng-options="c.label for c in ctrl.countries"
+    >
+    </select>
+
+    <script
+    src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js">
+    </script>
+    <script type="text/javascript">
+    angular.module('notesApp', [])
+        .controller("MainCtrl",[function(){
+            
+            var self = this;
+            self.sports = [
+                {id:3,label:'basketball',selected:'YES'},
+                {id:2,label:'cricket',selected:'NO'},
+                {id:1,label:'swimming',selected:'YES'},
+            ];
+
+            self.countries = [
+                {label:'USA',id:1},
+                {label:'India',id:2},
+                {label:'Other',id:3}
+            ];
+
+            self.selectedCountryId = 3;
+            self.selectedCountry = self.countries[1];
+
+            self.click = function(){
+                console.log("sports");
+                console.log(self.sports);
+                console.log("gender");
+                console.log(self.user);
+                console.log('select');
+                console.log(self.selectedCountryId);
+                console.log(self.selectedCountry);
+            };
+
+        }]);
+    </script>
+</body>
+
+</html>
