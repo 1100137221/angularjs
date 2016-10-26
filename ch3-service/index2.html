@@ -1,0 +1,44 @@
+
+
+<!-- File: chapter2/angularjs-manual-bootstrap.html -->
+<!DOCTYPE html>
+<html ng-app="notesApp">
+    <head>
+        <style>
+        
+        </style>
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js">
+        </script>
+        <script src='app2.js'></script>
+    </head>
+    <body ng-controller="MainCtrl as mainCtrl">
+        <h1>Hello Controller!</h1>
+        <button ng-click="mainCtrl.open('first')">Open First</button>
+        <button ng-click="mainCtrl.open('second')">Open Second</button>
+        <div ng-switch on="mainCtrl.tab">
+            <div ng-switch-when="first">
+                <div ng-controller="SubCtrl as Ctrl">
+                    <h3>First tab</h3>
+                    <ul>
+                        <li  ng-repeat="item in Ctrl.list()">
+                            <span ng-bind="item.label"></span>
+                        </li>
+                    </ul>
+                    <button ng-click="Ctrl.add();" >Add more items</button>
+                </div>
+            </div>
+           <div ng-switch-when="second">
+                <div ng-controller="SubCtrl as Ctrl">
+                    <h3>Second tab</h3>
+                    <ul >
+                        <li ng-repeat="item in Ctrl.list()">
+                            <span ng-bind="item.label"></span>
+                        </li>
+                    </ul>
+                    <button ng-click="Ctrl.add();" >Add more items</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
